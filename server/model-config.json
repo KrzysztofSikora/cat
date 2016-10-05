@@ -38,5 +38,9 @@
   "Cat": {
     "dataSource": "mongo",
     "public": true
+  },
+  "Owner": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
