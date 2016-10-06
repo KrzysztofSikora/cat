@@ -1,0 +1,27 @@
+{
+  "name": "Owner",
+  "plural": "owners",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "ownerName": {
+      "type": "string"
+    },
+    "ownerNumber": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "cats": {
+      "type": "hasMany",
+      "model": "Cat",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
