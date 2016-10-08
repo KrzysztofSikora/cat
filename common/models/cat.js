@@ -1,5 +1,11 @@
 'use strict';
 
+var geocoder = require('geocoder');
+var gramophone = require('gramophone')
+
+
+
+
 module.exports = function(Cat) {
 /// GET without value
   Cat.friendly = function (cb) {
@@ -81,5 +87,32 @@ module.exports = function(Cat) {
       cb(err, res)
     })
   }
+
+
+
+  // method is run before data
+  //
+
+  Cat.beforeRemote("create", function (ctx, modelInstance, next) {
+
+
+    console.log(gramophone.extract(ctx.args.data.describe))
+    //
+    ctx.args.data.words = gramophone.extract(ctx.args.data.describe)
+    console.log('zapisane do words')
+
+
+    geocoder.reverseGeocode(ctx.args.data.catAddress.location.lat, ctx.args.data.catAddress.location.lng, function (err, data) {
+      ctx.args.data.catAddress.city = data.results[0].address_components[3].long_name;
+
+
+      next()
+      // data up
+    });
+
+  })
+
+
+
 
 };

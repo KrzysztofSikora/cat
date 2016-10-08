@@ -18,6 +18,21 @@
     },
     "friendly": {
       "type": "boolean"
+    },
+    "catAddress" : {
+      "location": { "type": "Geopoint"},
+      "country" : {"type": "string"}
+    },
+    "describe" : {
+      "type": "string",
+      "length": 10000
+    },
+    "words": {
+      "type": [
+        {
+          "type": "string"
+        }
+      ]
     }
   },
   "validations": [],
