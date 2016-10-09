@@ -1,10 +1,6 @@
 var assert = require('chai').assert,
   superagent = require('superagent');
 
-// function getRandomArbitrary(min, max) {
-//   return Math.random() * (max - min) + min;
-// }
-
 
 describe("Create Cat", function () {
 
@@ -31,7 +27,7 @@ describe("Create Cat", function () {
   }];
 
 
-  it('POST data to create a broadcast', function (done) {
+  it('POST data to create a cat', function (done) {
 
 
     superagent
