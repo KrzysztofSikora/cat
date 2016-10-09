@@ -35,16 +35,16 @@ describe("Create Cat", function () {
       .send(json[0])
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
-      .end(function (err, Res) {
+      .end(function (err, resJSON) {
         if (err) {
           console.error(err);
           return done(err);
         }
 
-        console.log(Res.body);
+        console.log(resJSON.body);
 
-        assert.equal(Res.status, 200);
-        assert.ok(Res.body);
+        assert.equal(resJSON.status, 200);
+        assert.ok(resJSON.body);
 
         done();
 
