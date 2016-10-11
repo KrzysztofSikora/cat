@@ -42,6 +42,13 @@
           "type": "string"
         }
       ]
+    },
+    "metaCat": {
+      "type": [
+        {
+          "type": "string"
+        }
+      ]
     }
   },
   "validations": [],
