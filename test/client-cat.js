@@ -10,7 +10,7 @@ describe("Create Cat", function () {
   var json = [{
 
 
-    "name": "Ogłupiały",
+    "name": "Ogłupiałyy",
     "color": "red",
     "age": 10,
     "friendly": true,

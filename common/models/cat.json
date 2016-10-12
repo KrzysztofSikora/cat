@@ -44,12 +44,8 @@
       ]
     },
     "metaCat": {
-      "type": [
-        {
           "type": "string"
         }
-      ]
-    }
   },
   "validations": [],
   "relations": {},

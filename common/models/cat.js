@@ -105,12 +105,69 @@ module.exports = function(Cat) {
     geocoder.reverseGeocode(ctx.args.data.catAddress.location.lat, ctx.args.data.catAddress.location.lng, function (err, data) {
       ctx.args.data.catAddress.city = data.results[0].address_components[3].long_name;
 
-
+      ctx.args.data.metaCat = ctx.args.data.words + " " + ctx.args.data.catAddress.city + " "
       next()
       // data up
     });
 
   })
+
+
+  Cat.remoteMethod(
+    'searchByIndex',
+    {
+      http: {path: '/search/:query', verb: 'GET'},
+      accepts: {arg: 'query', type: 'string', http: {source: 'path'}},
+      returns: {root: true, type: 'object'},
+    }
+  );
+
+  Cat.searchByIndex = function (query, cb) {
+
+    //db.Cat.createIndex({"metaCat":"text"})
+    // db.Cat.find({$text: {$search: "bla"}})
+    console.log(query)
+    Cat.find({ where: { '$text': { search: query } }  }, function (err, res) {
+      console.log(res)
+      return cb(err, res);
+    })
+
+  }
+
+/////////////////////
+  Cat.remoteMethod('search', {
+    http: {path: '/search', verb: 'get'},
+
+    accepts: [{arg: "name", type: "string"},
+      {arg: "color", type: "string"},
+
+      {arg: "words", type: "string"},
+    ],
+
+    returns: [{arg: "name", type: "string"},
+      {arg: "color", type: "string"},
+      {arg: "words", type: "string"}
+    ]
+  });
+
+
+  Cat.search = function (name,color, words, cb) {
+
+    Cat.find(
+      {
+        where: {
+          and: [
+            {name: name}, {color: color},
+            {words: words}
+          ]
+        }
+
+      }, function (err, res) {
+        console.log(res)
+        return cb(err, res);
+      })
+    // console.log(userLocation)
+  }
 
 
 
