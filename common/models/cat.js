@@ -98,30 +98,26 @@ module.exports = function(Cat) {
     var Owner = app.models.Owner;
 
 
-    Owner.findById(ctx.args.data.ownerId).then(function (model) {
-      console.log('2');
-
-      console.log(model)
-
-
-      next()
-    }).catch(function (err) {
-      console.log(err)
-
-    });
-
     console.log(gramophone.extract(ctx.args.data.describe))
-    //
     ctx.args.data.words = gramophone.extract(ctx.args.data.describe)
     console.log('zapisane do words')
 
 
     geocoder.reverseGeocode(ctx.args.data.catAddress.location.lat, ctx.args.data.catAddress.location.lng, function (err, data) {
       ctx.args.data.catAddress.city = data.results[0].address_components[3].long_name;
-
       ctx.args.data.metaCat = ctx.args.data.words + " " + ctx.args.data.catAddress.city + " "
       // next()
-      // data up
+      Owner.findById(ctx.args.data.ownerId).then(function (model) {
+        console.log('2');
+
+        console.log(model)
+
+
+        next()
+      }).catch(function (err) {
+        console.log(err)
+
+      });
     });
 
   })
