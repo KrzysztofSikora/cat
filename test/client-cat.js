@@ -21,8 +21,8 @@ describe("Create Cat", function () {
       },
       "city": "Kraków"
     },
-    "describe": "bla bla bla bla bla bla bla bla ka ka ka ka ta ta ta ta"
-
+    "describe": "bla bla bla bla bla bla bla bla ka ka ka ka ta ta ta ta",
+     "ownerId": "57f53fa8179ae11a9aaa1128"
 
   }];
 

@@ -2,7 +2,7 @@
 
 var geocoder = require('geocoder');
 var gramophone = require('gramophone')
-
+var app = require("../../server/server");
 
 
 
@@ -95,6 +95,20 @@ module.exports = function(Cat) {
 
   Cat.beforeRemote("create", function (ctx, modelInstance, next) {
 
+    var Owner = app.models.Owner;
+
+
+    Owner.findById(ctx.args.data.ownerId).then(function (model) {
+      console.log('2');
+
+      console.log(model)
+
+
+      next()
+    }).catch(function (err) {
+      console.log(err)
+
+    });
 
     console.log(gramophone.extract(ctx.args.data.describe))
     //
@@ -106,7 +120,7 @@ module.exports = function(Cat) {
       ctx.args.data.catAddress.city = data.results[0].address_components[3].long_name;
 
       ctx.args.data.metaCat = ctx.args.data.words + " " + ctx.args.data.catAddress.city + " "
-      next()
+      // next()
       // data up
     });
 

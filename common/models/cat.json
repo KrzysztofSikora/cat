@@ -47,6 +47,10 @@
           "type": "string"
         }
   },
+  "ownerId": {
+    "type": "string"
+
+},
   "validations": [],
   "relations": {},
   "acls": [],
