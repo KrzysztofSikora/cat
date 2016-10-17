@@ -57,9 +57,12 @@ module.exports = function(Cat) {
     description: "Find all instances of the base User model no mater what the role user have."
   });
 
-  Cat.cos = function (credentials, cb) {
+  Cat.cos = function (dataPost, cb) {
 
-    console.log(dataPost)
+    // console.log(dataPost)
+    var tmpTab = dataPost.image.split(";");
+    tmpTab = tmpTab[0].split(":")
+    console.log(tmpTab[1]);
     return cb(null, dataPost);
   }
 
