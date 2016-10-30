@@ -53,5 +53,30 @@ describe("Create Cat", function () {
 
   });
 
+  it('GET data to find a cat', function (done) {
+
+
+    superagent
+      .get(domain + '/api/cats')
+      .send()
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .end(function (err, resJSON) {
+        if (err) {
+          console.error(err);
+          return done(err);
+        }
+
+        console.log(resJSON.body);
+
+        assert.equal(resJSON.status, 200);
+        assert.ok(resJSON.body);
+
+        done();
+
+
+      });
+
+  });
 
 });
